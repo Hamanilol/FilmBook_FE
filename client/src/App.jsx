@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
+import { Routes, Route } from "react-router-dom"
+import Home from "./pages/Home"
 import "./App.css"
 
 import Ticket from "./components/Ticket"
@@ -10,7 +12,7 @@ const App = () => {
   useEffect(() => {
     const getTicket = async () => {
       try {
-        let response = await axios.get("http://localhost:3001/issues")
+        let response = await axios.get("http://localhost:3000/tickets")
         setTicket(response.data)
       } catch (err) {
         console.log(err)
@@ -22,7 +24,13 @@ const App = () => {
 
   return (
     <>
-      <Form Ticket={tickets} setTicket={setTicket} />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </main>
+
+      <Ticket Ticket={tickets} setTicket={setTicket} />
       <h1>Tickets:</h1>
       {tickets?.map((ticket) => (
         <div key={ticket._id}>
