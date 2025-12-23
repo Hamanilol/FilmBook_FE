@@ -2,7 +2,7 @@ import { useState } from "react"
 import axios from "axios"
 import Movie from "../components/Movie"
 
-const API_KEY = import.meta.env.VITE_RAWG_KEY
+const API_KEY = import.meta.env.VITE_KEY
 
 const Home = () => {
   const [movies, setMovie] = useState([])
