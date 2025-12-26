@@ -45,7 +45,7 @@ const Form = () => {
         name="subject"
         onChange={handleChange}
         value={formState.subject}
-        autocomplete="off"
+        autoComplete="off"
       />
       <label htmlFor="message">Message</label>
       <textarea
@@ -54,7 +54,7 @@ const Form = () => {
         rows="10"
         onChange={handleChange}
         value={formState.message}
-        autocomplete="off"
+        autoComplete="off"
       ></textarea>
       <button type="submit">Send</button>
     </form>
