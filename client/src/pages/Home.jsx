@@ -22,7 +22,7 @@ const Home = () => {
           ))}
         </section>
         <section>
-          <button onClick={() => navigate("/signin")}>Sign in!</button>
+          <button onClick={() => navigate("/signin")}>Sign in here!</button>
         </section>
         <section>
           <button onClick={() => navigate("/register")}> Register!</button>
