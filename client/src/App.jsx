@@ -3,10 +3,11 @@ import axios from "axios"
 import { Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import "./App.css"
-import SignIn from "./pages/SiginIn"
+import SignIn from "./pages/Signin.jsx"
 import Register from "./pages/Register"
 import { CheckSession } from "./services/Auth.js"
 import Ticket from "./components/Ticket"
+import Feed from "./pages/Feed"
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -53,7 +54,7 @@ const App = () => {
           <Route path="/feed" element={<Feed user={user} />} />
         </Routes>
       </main>
-
+      {/*
       <Ticket Ticket={tickets} setTicket={setTicket} />
       <h1>Tickets:</h1>
       {tickets?.map((ticket) => (
@@ -62,7 +63,7 @@ const App = () => {
           <p>Subject: {ticket.subject}</p>
           <p>Message: {ticket.message}</p>
         </div>
-      ))}
+      ))} */}
     </>
   )
 }
