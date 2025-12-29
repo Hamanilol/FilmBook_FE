@@ -28,7 +28,7 @@ const Home = ({ user, handleLogOut }) => {
 
   return (
     <div>
-      <Nav user={user} handleLogOut={handleLogOut} />
+      <Nav/>
       <div className="movies">
         <h2>Movies</h2>
         <section className="container-grid">

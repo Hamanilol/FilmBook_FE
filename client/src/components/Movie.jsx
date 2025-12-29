@@ -1,4 +1,4 @@
-import { POSTER_PATH } from "../../globals"
+import { POSTER_PATH } from "../../../../FilmBook_BE/globals.js"
 
 const Movie = ({ movie, onClick }) => {
   return (
@@ -10,8 +10,9 @@ const Movie = ({ movie, onClick }) => {
         <h3>{movie.title}</h3>
         <p>Rating: {movie.vote_average}</p>
         <p>Release: {movie.release_date}</p>
+        <p>Length: {movie.length} </p>
         <p>Genres: {movie.genres}</p>
-        
+
       </div>
     </div>
   )

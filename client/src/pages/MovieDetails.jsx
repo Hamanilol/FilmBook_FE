@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { getMovieDetails } from "../services/tmdb"
 import { AddFavorite } from "../services/favorited"
-import { POSTER_PATH } from "../../globals"
+import { POSTER_PATH } from "../../../../FilmBook_BE/globals.js"
 import Nav from "../components/Navbar"
 
 const MovieDetails = ({ user, handleLogOut }) => {
