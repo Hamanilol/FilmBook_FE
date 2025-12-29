@@ -11,11 +11,19 @@ export const getPopularMovies = async () => {
     throw error
   }
 }
-
-export const getMovieDetails = async (id) => {
+export const getMovieDetails = async (movieId) => {
   try {
-    const res = await TMDBClient.get(`/movie/${id}?api_key=${API_KEY}`)
+    const res = await TMDBClient.get(`/movie/${movieId}?api_key=${API_KEY}`)
     return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
+export const getGenres = async () => {
+  try {
+    const res = await TMDBClient.get(`/genre/movie/list?api_key=${API_KEY}`)
+    return res.data.genres
   } catch (error) {
     throw error
   }

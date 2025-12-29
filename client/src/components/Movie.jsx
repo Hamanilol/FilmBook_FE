@@ -10,7 +10,8 @@ const Movie = ({ movie, onClick }) => {
         <h3>{movie.title}</h3>
         <p>Rating: {movie.vote_average}</p>
         <p>Release: {movie.release_date}</p>
-        <p>{movie.overview}</p>
+        <p>Genres: {movie.genres}</p>
+        
       </div>
     </div>
   )

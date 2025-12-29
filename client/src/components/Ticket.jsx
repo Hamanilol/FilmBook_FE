@@ -1,6 +1,7 @@
 import { useState } from "react"
+import axios from "axios"
 
-const Form = () => {
+const Form = ({ tickets, setTicket }) => {
   const initialState = {
     ticketType: "",
     subject: "",

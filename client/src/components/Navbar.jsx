@@ -7,7 +7,10 @@ const Nav = ({ user, handleLogOut }) => {
     userOptions = (
       <>
         <h3>Welcome {user.name}!</h3>
-        <Link to="/favorited">Favorited List</Link>
+        <Link to="/feed">Feed</Link>
+        <Link to="/">Home</Link>
+        <Link to="/favorited">Favorited Movies</Link>
+        <Link to="/tickets">Tickets</Link>
         <Link onClick={handleLogOut} to="/">
           Sign Out
         </Link>
@@ -19,7 +22,9 @@ const Nav = ({ user, handleLogOut }) => {
     <>
       <Link to="/">Home</Link>
       <Link to="/register">Register</Link>
+      <Link to="/feed">Feed</Link>
       <Link to="/signin">Sign In</Link>
+      <Link to="/register">SignUp</Link>
     </>
   )
 

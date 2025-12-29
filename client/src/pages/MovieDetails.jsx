@@ -3,11 +3,14 @@ import { useParams, useNavigate } from "react-router-dom"
 import { getMovieDetails } from "../services/tmdb"
 import { AddFavorite } from "../services/favorited"
 import { POSTER_PATH } from "../../globals"
+import Nav from "../components/Navbar"
 
-const MovieDetails = () => {
+const MovieDetails = ({ user, handleLogOut }) => {
   const { id } = useParams()
   const [movie, setMovie] = useState(null)
+  const [isAnimating, setIsAnimating] = useState(false)
   const navigate = useNavigate()
+  const isLoggedIn = localStorage.getItem("token")
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -23,10 +26,15 @@ const MovieDetails = () => {
 
   const handleFavorite = async () => {
     try {
+      setIsAnimating(true)
       await AddFavorite(id)
-      navigate("/favorited")
+      setTimeout(() => {
+        setIsAnimating(false)
+        alert("Added to favorites!")
+      }, 700)
     } catch (error) {
       console.error("Error adding to favorites:", error)
+      setIsAnimating(false)
     }
   }
 
@@ -34,12 +42,25 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <h2>{movie.title}</h2>
-      <img src={`${POSTER_PATH}${movie.poster_path}`} alt={movie.title} />
-      <p>Rating: {movie.vote_average}</p>
-      <p>Release Date: {movie.release_date}</p>
-      <p>Overview: {movie.overview}</p>
-      <button onClick={handleFavorite}>Add to Favorites</button>
+      <Nav user={user} handleLogOut={handleLogOut} />
+      <div className={isAnimating ? "animate-like" : ""}>
+        <h2>{movie.title}</h2>
+        <img src={`${POSTER_PATH}${movie.poster_path}`} alt={movie.title} />
+        <p>Rating: {movie.vote_average}</p>
+        <p>Release Date: {movie.release_date}</p>
+        {movie.genres && movie.genres.length > 0 && (
+          <p>Genres: {movie.genres.map(genre => genre.name).join(', ')}</p>
+        )}
+        <p>Overview: {movie.overview}</p>
+        {isLoggedIn && (
+          <div className="like-content">
+            <span>Add this movie to your favorites?</span>
+            <button className="btn-secondary" onClick={handleFavorite}>
+              <i className="fa fa-heart"></i> Add to Favorites
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   )
 }
