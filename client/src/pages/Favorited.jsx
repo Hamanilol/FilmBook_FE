@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState, useEffect } from "react"
 import { GetFavorites, DeleteFavorite } from "../services/favorited"
 import { getMovieDetails } from "../services/tmdb"
@@ -63,3 +64,16 @@ const Favorited = () => {
 }
 
 export default Favorited
+=======
+// const Favorited = ({ favorited }) => {
+//   return (
+//     <div className="favorite" onClick={favorited.onClick}>
+//       <div className="img-wrapper">
+//         <img src={favorited.background_image}></img>
+
+
+//       </div>
+//     </div>
+//   )
+// }
+>>>>>>> a441e05499e26156d2006dd3f81f86eb2156fc3a
