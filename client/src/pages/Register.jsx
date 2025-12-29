@@ -30,7 +30,6 @@ const Register = () => {
 
   return (
     <div className="col register">
-      <img src="/images/register.png" alt="Register Title Image" />
       <form onSubmit={handleSubmit}>
         <div className="input-wrapper">
           <label htmlFor="name">Name</label>
