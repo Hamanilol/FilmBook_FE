@@ -1,5 +1,5 @@
 import axios from "axios"
-import { API_KEY, BASE_URL } from "../../globals"
+import { API_KEY, BASE_URL } from "../../../../FilmBook_BE/globals"
 
 const TMDBClient = axios.create({ baseURL: BASE_URL })
 
