@@ -7,6 +7,9 @@ import SignIn from "./pages/SiginIn"
 import Register from "./pages/Register"
 import { CheckSession } from "./services/Auth.js"
 import Ticket from "./components/Ticket"
+import Movies from "./pages/Movies"
+import MovieDetails from "./pages/MovieDetails"
+import Favorited from "./pages/Favorited"
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -50,6 +53,9 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movie/:id" element={<MovieDetails />} />
+          <Route path="/favorited" element={<Favorited />} />
         </Routes>
       </main>
 

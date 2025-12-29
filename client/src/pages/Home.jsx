@@ -16,6 +16,7 @@ const Home = () => {
     <div>
       <div className="movies">
         <h2>Movies</h2>
+        <button onClick={() => navigate("/movies")}>Browse Movies</button>
         <section className="container-grid">
           {movies.map((movie) => (
             <Movie key={movie.id} movie={movie} />

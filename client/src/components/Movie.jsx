@@ -1,13 +1,16 @@
-const Movie = ({ movie }) => {
+import { POSTER_PATH } from "../../globals"
+
+const Movie = ({ movie, onClick }) => {
   return (
-    <div className="movie" onClick={movie.onClick}>
+    <div className="movie" onClick={onClick}>
       <div className="img-wrapper">
-        <img src={movie.background_image}></img>
+        <img src={`${POSTER_PATH}${movie.poster_path}`} alt={movie.title} />
       </div>
       <div className="info-wrapper flex-col">
-        <h3>{movie.name}</h3>
-        <p>{movie.rating}</p>
-        <p>{movie.length}</p>
+        <h3>{movie.title}</h3>
+        <p>Rating: {movie.vote_average}</p>
+        <p>Release: {movie.release_date}</p>
+        <p>{movie.overview}</p>
       </div>
     </div>
   )
