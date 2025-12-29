@@ -54,8 +54,8 @@ const App = () => {
           <Route path="/feed" element={<Feed user={user} />} />
         </Routes>
       </main>
-      {/*
-      <Ticket Ticket={tickets} setTicket={setTicket} />
+
+      {/* <Ticket Ticket={tickets} setTicket={setTicket} />
       <h1>Tickets:</h1>
       {tickets?.map((ticket) => (
         <div key={ticket._id}>
