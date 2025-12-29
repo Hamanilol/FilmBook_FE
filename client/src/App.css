@@ -97,3 +97,86 @@ body {
   transform: scale(1.08);
   opacity: 0.9;
 }
+
+.signin,
+.register {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signin form,
+.register form {
+  background-color: var(--primary-bg);
+  padding: 2.5rem;
+  border-radius: 20px;
+  width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), 0 0 0 rgba(255, 51, 131, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.08);
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.input-wrapper label {
+  color: var(--secondary-bg);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+.input-wrapper input {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  background-color: transparent;
+  color: #ffffff;
+  outline: none;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
+}
+
+.input-wrapper input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.input-wrapper input:focus {
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 12px rgba(255, 51, 131, 0.4);
+}
+
+.signin button,
+.register button {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background-color: blueviolet;
+  color: #ffffff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+}
+
+.signin button:hover,
+.register button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255, 51, 131, 0.5);
+}
+
+.signin button:disabled,
+.register button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}

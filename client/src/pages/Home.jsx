@@ -21,12 +21,6 @@ const Home = () => {
             <Movie key={movie.id} movie={movie} />
           ))}
         </section>
-        <section>
-          <button onClick={() => navigate("/signin")}>Sign in here!</button>
-        </section>
-        <section>
-          <button onClick={() => navigate("/register")}> Register!</button>
-        </section>
       </div>
     </div>
   )

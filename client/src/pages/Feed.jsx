@@ -23,11 +23,7 @@ const Feed = ({ user }) => {
           <div>
             <img src={post.image} alt="post" />
           </div>
-          {post.body.length >= 100 ? (
-            <p>{post.body.substring(0, 100)}...</p>
-          ) : (
-            <p>{post.body}</p>
-          )}
+          <p>{post.body}</p>
         </div>
       ))}
     </div>
