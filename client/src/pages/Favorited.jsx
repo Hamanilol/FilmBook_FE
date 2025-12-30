@@ -12,7 +12,7 @@ const Favorited = () => {
     const fetchFavorites = async () => {
       try {
         setLoading(true)
-
+        const validMovies = []
         const favoritesFromDB = await GetFavorites()
         const moviesWithDetails = await Promise.all(
           favoritesFromDB.map(async (favorite) => {
@@ -29,21 +29,18 @@ const Favorited = () => {
                 vote_average: movieDetails.vote_average,
                 release_date: movieDetails.release_date,
                 genres: movieDetails.genres,
-                overview: movieDetails.overview,
               }
             } catch (err) {
               console.error(`Error fetching movie ${favorite.movie}:`, err)
               return null
             }
           })
-        )
-
-        const validMovies = []
-        moviesWithDetails.map((movie) => {
+          ,moviesWithDetails.map((movie) => {
           if (movie !== null) {
             validMovies.push(movie)
           }
         })
+        )
         setFavorites(validMovies)
       } catch (err) {
         console.error("Error fetching favorites:", err)
@@ -97,11 +94,8 @@ const Favorited = () => {
                 <h3>{movie.title}</h3>
                 <div>Rating: {movie.vote_average}</div>
                 <div>Release: {movie.release_date}</div>
-                {movie.genres && movie.genres.length > 0 && (
-                  <div>
-                    Genres: {movie.genres.map((genre) => genre.name).join(", ")}
-                  </div>
-                )}
+                {<div>Genres: {movie.genres.map((genre) => genre.name).join(", ")}</div>} 
+                {/* used same logic as movie.jsx */}
               </div>
             </div>
 
