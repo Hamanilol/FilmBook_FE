@@ -9,6 +9,7 @@ import { CheckSession } from "./services/Auth.js"
 import Ticket from "./components/Ticket"
 import MovieDetails from "./pages/MovieDetails"
 import Favorited from "./pages/Favorited"
+import Nav from "./components/Navbar"
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -38,7 +39,7 @@ const App = () => {
         let response = await axios.get("http://localhost:3000")
         setTicket(response.data)
       } catch (err) {
-        console.log(err)
+        console.log("Error fetching tickets:", err)
       }
     }
 
@@ -47,13 +48,14 @@ const App = () => {
 
   return (
     <>
+      <Nav user={user} handleLogOut={handleLogOut} />
       <main>
         <Routes>
-          <Route path="/" element={<Home user={user} handleLogOut={handleLogOut} />} />
+          <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/movie/:id" element={<MovieDetails user={user} handleLogOut={handleLogOut} />} />
-          <Route path="/favorited" element={<Favorited user={user} handleLogOut={handleLogOut} />} />
+          <Route path="/movie/:id" element={<MovieDetails />} />
+          <Route path="/favorited" element={<Favorited />} />
         </Routes>
       </main>
 
