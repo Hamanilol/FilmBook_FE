@@ -8,7 +8,6 @@ const Favorited = () => {
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
-
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
@@ -18,7 +17,9 @@ const Favorited = () => {
         const moviesWithDetails = await Promise.all(
           favoritesFromDB.map(async (favorite) => {
             try {
-              const response = await axios.get(`http://localhost:3000/movies/${favorite.movie}`)
+              const response = await axios.get(
+                `http://localhost:3000/movies/${favorite.movie}`
+              )
               const movieDetails = response.data
               return {
                 favoriteId: favorite._id,
@@ -27,7 +28,8 @@ const Favorited = () => {
                 backdrop_path: movieDetails.backdrop_path,
                 vote_average: movieDetails.vote_average,
                 release_date: movieDetails.release_date,
-                overview: movieDetails.overview
+                genres: movieDetails.genres,
+                overview: movieDetails.overview,
               }
             } catch (err) {
               console.error(`Error fetching movie ${favorite.movie}:`, err)
@@ -43,7 +45,6 @@ const Favorited = () => {
           }
         })
         setFavorites(validMovies)
-
       } catch (err) {
         console.error("Error fetching favorites:", err)
       } finally {
@@ -57,7 +58,7 @@ const Favorited = () => {
   const handleRemoveFavorite = async (favoriteId) => {
     try {
       await DeleteFavorite(favoriteId)
-      setFavorites(favorites.filter(movie => movie.favoriteId !== favoriteId)) // Update state to remove the movie from the list
+      setFavorites(favorites.filter((movie) => movie.favoriteId !== favoriteId)) // Update state to remove the movie from the list
     } catch (err) {
       console.error("Error removing favorite:", err)
     }
@@ -84,7 +85,7 @@ const Favorited = () => {
             <div
               className="movie"
               onClick={() => handleMovieClick(movie.id)}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: "pointer" }}
             >
               <div className="img-wrapper">
                 <img
@@ -96,11 +97,20 @@ const Favorited = () => {
                 <h3>{movie.title}</h3>
                 <div>Rating: {movie.vote_average}</div>
                 <div>Release: {movie.release_date}</div>
+                {movie.genres && movie.genres.length > 0 && (
+                  <div>
+                    Genres: {movie.genres.map((genre) => genre.name).join(", ")}
+                  </div>
+                )}
               </div>
             </div>
 
-            <button className="btn-secondary remove-favorite-btn" onClick={() => handleRemoveFavorite(movie.favoriteId)}>
-            Remove from Favorites </button>
+            <button
+              className="btn-secondary remove-favorite-btn"
+              onClick={() => handleRemoveFavorite(movie.favoriteId)}
+            >
+              Remove from Favorites{" "}
+            </button>
           </div>
         ))}
       </section>

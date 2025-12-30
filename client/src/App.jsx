@@ -2,10 +2,11 @@ import { useState, useEffect } from "react"
 import { Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import "./App.css"
-import SignIn from "./pages/SiginIn"
+import SignIn from "./pages/Signin.jsx"
 import Register from "./pages/Register"
 import { CheckSession } from "./services/Auth.js"
 import Ticket from "./components/Ticket"
+import Feed from "./pages/Feed"
 import MovieDetails from "./pages/MovieDetails"
 import Favorited from "./pages/Favorited"
 import Nav from "./components/Navbar"
@@ -54,6 +55,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/feed" element={<Feed user={user} />} />
           <Route path="/movie/:id" element={<MovieDetails />} />
           <Route path="/favorited" element={<Favorited />} />
           <Route
