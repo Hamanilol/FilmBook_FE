@@ -1,94 +1,108 @@
 import { useState, useEffect } from "react"
-import { GetFavorites, DeleteFavorite } from "../services/favorited"
-import { getMovieDetails } from "../services/tmdb"
-import Movie from "../components/Movie"
 import { useNavigate } from "react-router-dom"
-import Nav from "../components/Navbar"
+import axios from "axios"
+import { GetFavorites, DeleteFavorite } from "../services/favorited"
 
-const Favorited = ({ user, handleLogOut }) => {
+const Favorited = () => {
   const [favorites, setFavorites] = useState([])
-  const [movies, setMovies] = useState([])
-  const [loading, setLoading] = useState(true) // New loading state
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
+
   useEffect(() => {
-    const fetchFavorites = async () => { // Fetch favorite records
+    const fetchFavorites = async () => {
       try {
-        const favs = await GetFavorites();
-        setFavorites(favs);
+        setLoading(true)
 
-        if (favs.length === 0) { // in case there are no favorites
-          setMovies([]);
-          setLoading(false);
-          return;
-        }
+        const favoritesFromDB = await GetFavorites()
+        const moviesWithDetails = await Promise.all(
+          favoritesFromDB.map(async (favorite) => {
+            try {
+              const response = await axios.get(`http://localhost:3000/movies/${favorite.movie}`)
+              const movieDetails = response.data
+              return {
+                favoriteId: favorite._id,
+                id: movieDetails.id,
+                title: movieDetails.title,
+                backdrop_path: movieDetails.backdrop_path,
+                vote_average: movieDetails.vote_average,
+                release_date: movieDetails.release_date,
+                genres: movieDetails.genres,
+                overview: movieDetails.overview
+              }
+            } catch (err) {
+              console.error(`Error fetching movie ${favorite.movie}:`, err)
+              return null
+            }
+          })
+        )
 
-        // Create array of promises using .map()
-        const movie = favs.map(fav => getMovieDetails(fav.movie));
+        const validMovies = moviesWithDetails.filter(movie => movie !== null)
+        setFavorites(validMovies)
 
-        // Wait for each promise and collect results
-        const moviesData = [];
-        for (let i = 0; i < movie.length; i++) {
-          const movie = await movie[i];
-          moviesData.push(movie);
-        }
-
-        setMovies(moviesData); // set movies state
-        setLoading(false); // turn off loading
-      } catch (error) {
-        console.error("Error fetching favorites:", error); // handle error
-        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching favorites:", err)
+      } finally {
+        setLoading(false)
       }
-    };
+    }
 
-    fetchFavorites(); // initiate fetch on component mount
-  }, []);
+    fetchFavorites()
+  }, [])
 
-  const handleMovieClick = (movieId) => {
-    navigate(`/movie/${movieId}`) // navigate to movie details page 
-  }
-
-  const handleRemoveFavorite = async (favId) => {
+  const handleRemoveFavorite = async (favoriteId) => {
     try {
-      await DeleteFavorite(favId)
-      const index = favorites.findIndex(fav => fav._id === favId)
-      setFavorites(favorites.filter((_, i) => i !== index))
-      setMovies(movies.filter((_, i) => i !== index))
-    } catch (error) {
-      console.error("Error removing favorite:", error)
+      await DeleteFavorite(favoriteId)
+      setFavorites(favorites.filter(movie => movie.favoriteId !== favoriteId)) // Update state to remove the movie from the list
+    } catch (err) {
+      console.error("Error removing favorite:", err)
     }
   }
 
-  if (loading) { // show loading state
+  const handleMovieClick = (movieId) => {
+    navigate(`/movie/${movieId}`)
+  }
+
+  if (loading) {
     return (
-      <div>
-        <Nav user={user} handleLogOut={handleLogOut} />
-        <h2>Your Favorited Movies</h2> // keep the header
-        <p>Loading favorites...</p> // show loading message
+      <div className="movies">
+        <h2>My Favorites</h2>
       </div>
     )
   }
 
   return (
-    <div>
-      <Nav user={user} handleLogOut={handleLogOut} /> // navigation bar
-      <h2>Your Favorited Movies</h2>
-      <p>Favorites: {favorites.length}, Movies loaded: {movies.length}</p>
-      {movies.length === 0 ? ( // in case no favorited movies display message
-        <p>No favorited movies yet.</p>
-      ) : ( // else display favorited movies
-        <section className="container-grid">
-          {movies.map((movie, index) => (
-            <div key={movie.id}>
-              <Movie
-                movie={movie}
-                onClick={() => handleMovieClick(movie.id)}
-              />
-              <button onClick={() => handleRemoveFavorite(favorites[index]._id)}>Remove from Favorites</button> // button to remove from favorites based on index
+    <div className="movies">
+      <h2>My Favorites</h2>
+      <section className="container-grid">
+        {favorites.map((movie) => (
+          <div key={movie.favoriteId} className="favorite-movie-card">
+            <div
+              className="movie"
+              onClick={() => handleMovieClick(movie.id)}
+              style={{ cursor: 'pointer' }}
+            >
+              <div className="img-wrapper">
+                <img
+                  src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                  alt={movie.title}
+                />
+              </div>
+              <div className="info-wrapper flex-col">
+                <h3>{movie.title}</h3>
+                <div>Rating: {movie.vote_average}</div>
+                <div>Release: {movie.release_date}</div>
+                {movie.genres && movie.genres.length > 0 && (
+                  <div>Genres: {movie.genres.map(genre => genre.name).join(', ')}</div>
+                )}
+              </div>
             </div>
-          ))}
-        </section>
-      )}
+
+            <button className="btn-secondary remove-favorite-btn" onClick={() => handleRemoveFavorite(movie.favoriteId)}>
+            Remove from Favorites </button>
+          </div>
+        ))}
+      </section>
     </div>
   )
 }

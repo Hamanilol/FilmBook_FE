@@ -1,5 +1,3 @@
-import { POSTER_PATH } from "../../../../FilmBook_BE/globals.js"
-
 const Movie = ({ movie, onClick }) => {
   return (
     <div className="movie">

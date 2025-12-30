@@ -7,7 +7,13 @@ import SignIn from "./pages/Signin.jsx"
 import Register from "./pages/Register"
 import { CheckSession } from "./services/Auth.js"
 import Ticket from "./components/Ticket"
+<<<<<<< HEAD
 import Feed from "./pages/Feed"
+=======
+import MovieDetails from "./pages/MovieDetails"
+import Favorited from "./pages/Favorited"
+import Nav from "./components/Navbar"
+>>>>>>> 5e0a5ffde152c339339d275a4e1602623b36fd3f
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -37,7 +43,7 @@ const App = () => {
         let response = await axios.get("http://localhost:3000/ticket")
         setTicket(response.data)
       } catch (err) {
-        console.log(err)
+        console.log("Error fetching tickets:", err)
       }
     }
 
@@ -46,12 +52,18 @@ const App = () => {
 
   return (
     <>
+      <Nav user={user} handleLogOut={handleLogOut} />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
+<<<<<<< HEAD
           <Route path="/feed" element={<Feed user={user} />} />
+=======
+          <Route path="/movie/:id" element={<MovieDetails />} />
+          <Route path="/favorited" element={<Favorited />} />
+>>>>>>> 5e0a5ffde152c339339d275a4e1602623b36fd3f
         </Routes>
       </main>
 
