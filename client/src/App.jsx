@@ -34,11 +34,7 @@ const App = () => {
   useEffect(() => {
     const getTicket = async () => {
       try {
-<<<<<<< HEAD
-        let response = await axios.get("http://localhost:3000/tickets")
-=======
         let response = await axios.get("http://localhost:3000/ticket")
->>>>>>> 9f96e91c1a0dba6fdb29ec63217800ebb4a728eb
         setTicket(response.data)
       } catch (err) {
         console.log(err)
@@ -59,7 +55,7 @@ const App = () => {
         </Routes>
       </main>
 
-      {/* <Ticket Ticket={tickets} setTicket={setTicket} />
+      <Ticket Ticket={tickets} setTicket={setTicket} />
       <h1>Tickets:</h1>
       {tickets?.map((ticket) => (
         <div key={ticket._id}>
@@ -67,7 +63,7 @@ const App = () => {
           <p>Subject: {ticket.subject}</p>
           <p>Message: {ticket.message}</p>
         </div>
-      ))} */}
+      ))}
     </>
   )
 }
