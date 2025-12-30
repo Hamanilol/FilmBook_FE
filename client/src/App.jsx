@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import axios from "axios"
 import { Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import "./App.css"
@@ -11,6 +10,7 @@ import Feed from "./pages/Feed"
 import MovieDetails from "./pages/MovieDetails"
 import Favorited from "./pages/Favorited"
 import Nav from "./components/Navbar"
+import Client from "./services/api"
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -37,7 +37,7 @@ const App = () => {
   useEffect(() => {
     const getTicket = async () => {
       try {
-        let response = await axios.get("http://localhost:3000")
+        let response = await Client.get("/ticket")
         setTicket(response.data)
       } catch (err) {
         console.log("Error fetching tickets:", err)
@@ -58,6 +58,10 @@ const App = () => {
           <Route path="/feed" element={<Feed user={user} />} />
           <Route path="/movie/:id" element={<MovieDetails />} />
           <Route path="/favorited" element={<Favorited />} />
+          <Route
+            path="/tickets"
+            element={<Ticket tickets={tickets} setTicket={setTicket} />}
+          />
         </Routes>
       </main>
     </>

@@ -1,65 +1,48 @@
 import { useState } from "react"
 import axios from "axios"
+import TicketForm from "../pages/TicketForm"
 
-const Form = ({ tickets, setTicket }) => {
-  const initialState = {
+const Ticket = ({ tickets, setTicket }) => {
+  const [form, setForm] = useState({
     ticketType: "",
     subject: "",
     message: "",
+  })
+
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value })
+
+  const sendTicket = async (e) => {
+    e.preventDefault()
+    const token = localStorage.getItem("token")
+
+    const res = await axios.post("http://localhost:3000/ticket", form, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+
+    setTicket([...tickets, res.data])
+    setForm({ ticketType: "", subject: "", message: "" })
   }
 
-  const [formState, setFormState] = useState(initialState)
+  const getMyTickets = async () => {
+    const token = localStorage.getItem("token")
 
-  const handleChange = (event) => {
-    setFormState({ ...formState, [event.target.name]: event.target.value })
-  }
+    const res = await axios.get("http://localhost:3000/ticket", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
 
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    const response = await axios.post(
-      "http://localhost:3000/tickets",
-      formState
-    )
-    let ticketList = [...tickets]
-    ticketList.push(response.data)
-    setFormState(initialState)
+    setTicket(res.data)
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="ticketType">Type of Issue:</label>
-      <select
-        name="ticketType"
-        onChange={handleChange}
-        value={formState.ticketType}
-      >
-        <option value="" disabled defaultValue>
-          Select Ticket Type
-        </option>
-        <option value="sign-in ">Sign-in Issues</option>
-        <option value="bug">Bugs in website</option>
-        <option value="Suggestion">Suggestion</option>
-      </select>
-      <label htmlFor="subject">Subject:</label>
-      <input
-        type="text"
-        name="subject"
-        onChange={handleChange}
-        value={formState.subject}
-        autoComplete="off"
-      />
-      <label htmlFor="message">Message</label>
-      <textarea
-        name="message"
-        cols="30"
-        rows="10"
-        onChange={handleChange}
-        value={formState.message}
-        autoComplete="off"
-      ></textarea>
-      <button type="submit">Send</button>
-    </form>
+    <TicketForm
+      form={form}
+      tickets={tickets}
+      onChange={handleChange}
+      onSubmit={sendTicket}
+      onGetTickets={getMyTickets}
+    />
   )
 }
 
-export default Form
+export default Ticket
