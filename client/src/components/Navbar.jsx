@@ -31,8 +31,10 @@ const Nav = ({ user, handleLogOut }) => {
       <Link to="/">
         <img
           className="logo"
-          src="/FilmBook_FE/client/images/Logo.png"
-          alt="React Auth Logo"
+          src="../../public/images/Logo.png"
+          alt=""
+          width="auto"
+          height="auto"
         />
       </Link>
       <nav>{user ? userOptions : publicOptions}</nav>
