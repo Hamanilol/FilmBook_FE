@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import axios from "axios"
 import { AddFavorite } from "../services/favorited"
+import { useNavigate } from "react-router-dom"
 
 const MovieDetails = () => {
   const { id } = useParams()

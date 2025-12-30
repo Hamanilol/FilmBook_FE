@@ -60,16 +60,6 @@ const App = () => {
           <Route path="/favorited" element={<Favorited />} />
         </Routes>
       </main>
-
-      <Ticket Ticket={tickets} setTicket={setTicket} />
-      <h1>Tickets:</h1>
-      {tickets?.map((ticket) => (
-        <div key={ticket._id}>
-          <h3>Type: {ticket.ticketType}</h3>
-          <p>Subject: {ticket.subject}</p>
-          <p>Message: {ticket.message}</p>
-        </div>
-      ))}
     </>
   )
 }

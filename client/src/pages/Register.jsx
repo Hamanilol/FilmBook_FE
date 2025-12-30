@@ -28,6 +28,9 @@ const Register = () => {
     navigate("/signin")
   }
 
+  const backButton = () => {
+    navigate("/")
+  }
   return (
     <div className="col register">
       <form onSubmit={handleSubmit}>
