@@ -33,7 +33,7 @@ const App = () => {
   useEffect(() => {
     const getTicket = async () => {
       try {
-        let response = await axios.get("http://localhost:3000/tickets")
+        let response = await axios.get("http://localhost:3000/ticket")
         setTicket(response.data)
       } catch (err) {
         console.log(err)

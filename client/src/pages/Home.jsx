@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import axios from "axios"
 import Movie from "../components/Movie"
 import { useNavigate } from "react-router-dom"
@@ -9,9 +9,13 @@ const Home = () => {
   let navigate = useNavigate()
   const [movies, setMovie] = useState([])
   const getMovie = async () => {
-    const response = await axios.get(`${API_KEY}`) //add api route here
-    setMovie(response.data.results)
+    const response = await axios.get("http://localhost:3000/movies")
+    setMovie(response.data)
   }
+
+  useEffect(() => {
+    getMovie()
+  }, [])
   return (
     <div>
       <div className="movies">
