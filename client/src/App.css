@@ -3,20 +3,14 @@
   --secondary-bg: #c8c8c8;
   --accent: #6a0dad;
   --accent-light: #c77dff;
-}
-
-/* BASE */
-
+} /* BASE */
 body {
   margin: 0;
   padding: 0;
   background: radial-gradient(circle at top, #2a1446, #0f0716);
   font-family: "Open Sans", sans-serif;
   color: var(--secondary-bg);
-}
-
-/* NAVBAR */
-
+} /* NAVBAR */
 header {
   position: sticky;
   top: 0;
@@ -30,17 +24,14 @@ header {
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
-
 .logo {
   height: 64px;
 }
-
 nav {
   display: flex;
   align-items: center;
   gap: 2rem;
 }
-
 nav a {
   text-decoration: none;
   font-size: 1rem;
@@ -51,14 +42,10 @@ nav a {
   border-radius: 10px;
   transition: background 0.25s ease, color 0.25s ease;
 }
-
 nav a:hover {
   background: rgba(199, 125, 255, 0.2);
   color: #ffffff;
-}
-
-/* SECTION TITLES */
-
+} /* SECTION TITLES */
 .movies h2 {
   margin: 2.5rem 0 1.8rem;
   text-align: center;
@@ -69,19 +56,13 @@ nav a:hover {
   color: #ffffff;
   text-shadow: 0 0 14px rgba(199, 125, 255, 0.6),
     0 0 32px rgba(106, 13, 173, 0.85);
-}
-
-/* GRID */
-
+} /* GRID */
 .container-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 2.8rem;
   padding: 3rem;
-}
-
-/* MOVIE CARD */
-
+} /* MOVIE CARD */
 .movie {
   background: linear-gradient(180deg, #6a0dad, #4b087a);
   border-radius: 26px;
@@ -92,36 +73,30 @@ nav a:hover {
   box-shadow: 0 14px 35px rgba(0, 0, 0, 0.55), 0 0 0 rgba(199, 125, 255, 0.4);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
-
 .movie:hover {
   transform: translateY(-10px) scale(1.04);
   box-shadow: 0 26px 60px rgba(0, 0, 0, 0.75), 0 0 50px rgba(199, 125, 255, 0.7);
 }
-
 .img-wrapper {
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
 }
-
 .img-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.4s ease;
 }
-
 .movie:hover .img-wrapper img {
   transform: scale(1.1);
 }
-
 .info-wrapper {
   padding: 1.4rem;
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
 }
-
 .info-wrapper h3 {
   margin: 0;
   font-size: 1.35rem;
@@ -129,24 +104,19 @@ nav a:hover {
   letter-spacing: 0.6px;
   color: #ffffff;
 }
-
 .info-wrapper div,
 .info-wrapper p {
   font-size: 0.95rem;
   font-weight: 500;
   color: #f0e6ff;
   opacity: 0.9;
-}
-
-/* FEED POSTS */
-
+} /* FEED POSTS */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 2.5rem;
   padding: 3rem;
 }
-
 .card {
   background-color: var(--accent);
   color: #f3eaff;
@@ -159,35 +129,28 @@ nav a:hover {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 rgba(199, 125, 255, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .card:hover {
   transform: translateY(-10px) scale(1.03);
   box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65), 0 0 35px rgba(199, 125, 255, 0.6);
 }
-
 .card h3 {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 700;
   color: #ffffff;
 }
-
 .card img {
   width: 100%;
   height: 280px;
   object-fit: cover;
   border-radius: 16px;
 }
-
 .card p {
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.6;
   opacity: 0.9;
-}
-
-/* AUTH */
-
+} /* AUTH */
 .signin,
 .register {
   height: 90vh;
@@ -195,7 +158,6 @@ nav a:hover {
   justify-content: center;
   align-items: center;
 }
-
 .signin form,
 .register form {
   background: linear-gradient(
@@ -213,20 +175,17 @@ nav a:hover {
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65),
     0 0 45px rgba(199, 125, 255, 0.45);
 }
-
 .input-wrapper {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-
 .input-wrapper label {
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.6px;
   color: #f3eaff;
 }
-
 .input-wrapper input {
   padding: 0.9rem 1.1rem;
   font-size: 1rem;
@@ -236,12 +195,10 @@ nav a:hover {
   color: #ffffff;
   outline: none;
 }
-
 .input-wrapper input:focus {
   border: 2px solid var(--accent-light);
   box-shadow: 0 0 16px rgba(199, 125, 255, 0.6);
 }
-
 .signin button,
 .register button {
   margin-top: 1.8rem;
@@ -255,15 +212,11 @@ nav a:hover {
   background: linear-gradient(135deg, #6a0dad, #c77dff);
   color: #ffffff;
 }
-
 .signin button:hover,
 .register button:hover {
   transform: translateY(-4px) scale(1.05);
   box-shadow: 0 15px 35px rgba(199, 125, 255, 0.7);
-}
-
-/* MOVIE DETAILS */
-
+} /* MOVIE DETAILS */
 .movie-details {
   max-width: 1100px;
   margin: 3rem auto;
@@ -279,26 +232,22 @@ nav a:hover {
   flex-direction: column;
   gap: 1.6rem;
 }
-
 .movie-details h2 {
   font-size: 2.6rem;
   font-weight: 900;
   color: #ffffff;
 }
-
 .movie-details img {
   width: 100%;
   max-height: 520px;
   object-fit: cover;
   border-radius: 22px;
 }
-
 .movie-details p {
   font-size: 1.05rem;
   line-height: 1.7;
   color: #f0e6ff;
-}
-
+} /* === FIX MOVIE DETAILS FAVORITE BUTTON === */
 .movie-details button {
   background: linear-gradient(135deg, #6a0dad, #c77dff);
   color: #ffffff;
@@ -310,16 +259,12 @@ nav a:hover {
   cursor: pointer;
   transition: opacity 0.2s ease, filter 0.2s ease, transform 0.2s ease;
 }
-
 .movie-details button:active,
 .movie-details button:focus,
 .movie-details button:focus-visible {
   opacity: 0.45;
   filter: grayscale(100%);
-}
-
-/* === CENTER REMOVE FAVORITE BUTTON === */
-
+} /* === CENTER REMOVE FAVORITE BUTTON === */
 .remove-favorite-btn {
   display: block;
   margin: 1.2rem auto 0 auto;
@@ -333,16 +278,10 @@ nav a:hover {
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 .remove-favorite-btn:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 25px rgba(199, 125, 255, 0.6);
-}
-
-/* ============================= */
-/* TICKETS PAGE (REFINED) */
-/* ============================= */
-
+} /* ============================= */ /* TICKETS PAGE (REFINED) */ /* ============================= */
 .ticket-page {
   max-width: 1100px;
   margin: 4rem auto;
@@ -352,7 +291,6 @@ nav a:hover {
   align-items: center;
   gap: 3rem;
 }
-
 .ticket-form {
   width: 100%;
   max-width: 720px;
@@ -364,17 +302,14 @@ nav a:hover {
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.65),
     inset 0 0 40px rgba(199, 125, 255, 0.25);
 }
-
 .ticket-form button:first-of-type {
   margin-bottom: 1.6rem;
 }
-
 .ticket-form form {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 }
-
 .ticket-form select,
 .ticket-form input,
 .ticket-form textarea {
@@ -386,12 +321,10 @@ nav a:hover {
   color: #ffffff;
   font-size: 1rem;
 }
-
 .ticket-form textarea {
   min-height: 140px;
   resize: none;
 }
-
 .ticket-form button {
   align-self: flex-start;
   padding: 0.9rem 2rem;
@@ -404,14 +337,10 @@ nav a:hover {
   color: #ffffff;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 .ticket-form button:hover {
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 15px 35px rgba(199, 125, 255, 0.7);
-}
-
-/* TICKETS LIST */
-
+} /* TICKETS LIST */
 .ticket-list {
   width: 100%;
   max-width: 720px;
@@ -419,7 +348,6 @@ nav a:hover {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
 }
-
 .ticket-card {
   background: rgba(106, 13, 173, 0.55);
   backdrop-filter: blur(14px);
@@ -429,14 +357,12 @@ nav a:hover {
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55),
     inset 0 0 30px rgba(199, 125, 255, 0.22);
 }
-
 .ticket-card p {
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.6;
   color: #f0e6ff;
 }
-
 main {
   background: transparent;
   min-height: 100vh;
