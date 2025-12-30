@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom"
 
 const Nav = ({ user, handleLogOut }) => {
   let userOptions
@@ -7,8 +7,8 @@ const Nav = ({ user, handleLogOut }) => {
     userOptions = (
       <>
         <h3>Welcome {user.name}!</h3>
-        <Link to="/feed">Feed</Link>
         <Link to="/">Home</Link>
+        <Link to="/feed">Feed</Link>
         <Link to="/favorited">Favorited Movies</Link>
         <Link to="/tickets">Tickets</Link>
         <Link onClick={handleLogOut} to="/">
@@ -29,11 +29,13 @@ const Nav = ({ user, handleLogOut }) => {
   return (
     <header>
       <Link to="/">
-        <img className="logo" src="/FilmBook_FE/client/images/Logo.png" alt="React Auth Logo" />
+        <img
+          className="logo"
+          src="/FilmBook_FE/client/images/Logo.png"
+          alt="React Auth Logo"
+        />
       </Link>
-      <nav>
-        {user ? userOptions : publicOptions}
-      </nav>
+      <nav>{user ? userOptions : publicOptions}</nav>
     </header>
   )
 }
