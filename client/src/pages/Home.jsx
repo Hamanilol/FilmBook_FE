@@ -2,10 +2,10 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import Movie from "../components/Movie"
 import { useNavigate } from "react-router-dom"
+import Nav from "../components/Navbar"
+import { getPopularMovies } from "../services/tmdb"
 
-const API_KEY = import.meta.env.VITE_KEY
-
-const Home = () => {
+const Home = ({ user, handleLogOut }) => {
   let navigate = useNavigate()
   const [movies, setMovie] = useState([])
   const getMovie = async () => {
@@ -18,18 +18,13 @@ const Home = () => {
   }, [])
   return (
     <div>
+      <Nav/>
       <div className="movies">
         <h2>Movies</h2>
         <section className="container-grid">
           {movies.map((movie) => (
-            <Movie key={movie.id} movie={movie} />
+            <Movie key={movie.id} movie={movie} onClick={() => handleMovieClick(movie.id)} />
           ))}
-        </section>
-        <section>
-          <button onClick={() => navigate("/signin")}>Sign in here!</button>
-        </section>
-        <section>
-          <button onClick={() => navigate("/register")}> Register!</button>
         </section>
       </div>
     </div>
