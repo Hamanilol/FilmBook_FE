@@ -5,14 +5,16 @@ import { AddFavorite } from "../services/favorited"
 
 const MovieDetails = () => {
   const { id } = useParams()
-  const [movie, setMovie] = useState(null)
+  const [movie, setMovie] = useState()
   const navigate = useNavigate()
   const isLoggedIn = localStorage.getItem("token")
 
   useEffect(() => {
     const fetchMovie = async () => {
       try {
+        console.log("Fetching movie with id:", id)
         const response = await axios.get(`http://localhost:3000/movies/${id}`)
+        console.log("Movie data received:", response.data)
         setMovie(response.data)
       } catch (error) {
         console.error("Error fetching movie details:", error)

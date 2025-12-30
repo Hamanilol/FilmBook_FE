@@ -1,7 +1,7 @@
 const Movie = ({ movie, onClick }) => {
   return (
     <div className="movie">
-      <div className="img-wrapper">
+      <div className="img-wrapper" onClick={onClick}>
         <img
           src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
         />
