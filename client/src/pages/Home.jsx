@@ -8,24 +8,14 @@ import { getPopularMovies } from "../services/tmdb"
 const Home = ({ user, handleLogOut }) => {
   let navigate = useNavigate()
   const [movies, setMovie] = useState([])
-
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const movieData = await getPopularMovies()
-        console.log("Fetched movies:", movieData)
-        setMovie(movieData)
-      } catch (error) {
-        console.error("Error fetching movies:", error)
-      }
-    }
-    fetchMovies()
-  }, [])
-
-  const handleMovieClick = (movieId) => {
-    navigate(`/movie/${movieId}`)
+  const getMovie = async () => {
+    const response = await axios.get("http://localhost:3000/movies")
+    setMovie(response.data)
   }
 
+  useEffect(() => {
+    getMovie()
+  }, [])
   return (
     <div>
       <Nav/>
