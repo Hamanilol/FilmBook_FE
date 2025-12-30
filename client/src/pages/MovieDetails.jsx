@@ -1,25 +1,23 @@
 import { useState, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import axios from "axios"
 import { AddFavorite } from "../services/favorited"
 
 const MovieDetails = () => {
   const { id } = useParams()
-  const [movie, setMovie] = useState()
-  const navigate = useNavigate()
+  const [movie, setMovie] = useState(null)
   const isLoggedIn = localStorage.getItem("token")
 
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        console.log("Fetching movie with id:", id)
         const response = await axios.get(`http://localhost:3000/movies/${id}`)
-        console.log("Movie data received:", response.data)
         setMovie(response.data)
       } catch (error) {
         console.error("Error fetching movie details:", error)
       }
     }
+
     fetchMovie()
   }, [id])
 
@@ -34,20 +32,25 @@ const MovieDetails = () => {
   if (!movie) return <div>Loading...</div>
 
   return (
-    <div>
+    <div className="movie-details">
       <h2>{movie.title}</h2>
-      <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.title} />
-      <p>Rating: {movie.vote_average}</p>
-      <p>Release Date: {movie.release_date}</p>
-      <p>Overview: {movie.overview}</p>
-      {isLoggedIn && (
-        <div>
-          <button onClick={handleFavorite}>
-            Add to Favorites
-          </button>
-        </div>
-      )} 
-      {/* only the user will be able to see the favorite button */}
+
+      <div className="movie-details-img">
+        <img
+          src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+          alt={movie.title}
+        />
+      </div>
+
+      <p>
+        <strong>Rating:</strong> {movie.vote_average}
+      </p>
+      <p>
+        <strong>Release Date:</strong> {movie.release_date}
+      </p>
+      <p>{movie.overview}</p>
+
+      {isLoggedIn && <button onClick={handleFavorite}>Add to Favorites</button>}
     </div>
   )
 }
