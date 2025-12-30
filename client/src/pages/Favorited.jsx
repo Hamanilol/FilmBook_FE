@@ -25,8 +25,6 @@ const Favorited = () => {
                 backdrop_path: movieDetails.backdrop_path,
                 vote_average: movieDetails.vote_average,
                 release_date: movieDetails.release_date,
-                genres: movieDetails.genres,
-                overview: movieDetails.overview,
               }
             } catch (err) {
               console.error(`Error fetching movie ${favorite.movie}:`, err)
@@ -88,11 +86,6 @@ const Favorited = () => {
                 <h3>{movie.title}</h3>
                 <div>Rating: {movie.vote_average}</div>
                 <div>Release: {movie.release_date}</div>
-                {movie.genres && movie.genres.length > 0 && (
-                  <div>
-                    Genres: {movie.genres.map((genre) => genre.name).join(", ")}
-                  </div>
-                )}
               </div>
             </div>
             <button
