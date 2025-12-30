@@ -8,7 +8,7 @@ const Movie = ({ movie, onClick }) => {
       </div>
       <div className="info-wrapper flex-col">
         <h3>{movie.title}</h3>
-        <p>{movie.rating}</p>
+        <p>{movie.vote_average}</p>
       </div>
     </div>
   )

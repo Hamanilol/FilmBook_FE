@@ -18,6 +18,9 @@ const Home = () => {
     navigate(`/movie/${movieId}`)
   }
 
+  useEffect(() => {
+    getMovie()
+  }, [])
   return (
     <div className="movies">
       <h2>Movies</h2>
