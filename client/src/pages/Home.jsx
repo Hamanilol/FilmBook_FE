@@ -12,7 +12,8 @@ const Home = () => {
   }
 
   useEffect(() => {
-    getMovie()}, [])
+    getMovie()
+  }, [])
 
   const handleMovieClick = (movieId) => {
     navigate(`/movie/${movieId}`)
@@ -26,7 +27,11 @@ const Home = () => {
       <h2>Movies</h2>
       <section className="container-grid">
         {movies.map((movie) => (
-          <Movie key={movie.id} movie={movie} onClick={() => handleMovieClick(movie.id)} />
+          <Movie
+            key={movie.id}
+            movie={movie}
+            onClick={() => handleMovieClick(movie.id)}
+          />
         ))}
       </section>
     </div>
@@ -34,4 +39,3 @@ const Home = () => {
 }
 
 export default Home
-

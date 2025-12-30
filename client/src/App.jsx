@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import axios from "axios"
 import { Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import "./App.css"
@@ -10,6 +9,7 @@ import Ticket from "./components/Ticket"
 import MovieDetails from "./pages/MovieDetails"
 import Favorited from "./pages/Favorited"
 import Nav from "./components/Navbar"
+import Client from "./services/api"
 
 const App = () => {
   const [user, setUser] = useState(null)
@@ -36,7 +36,7 @@ const App = () => {
   useEffect(() => {
     const getTicket = async () => {
       try {
-        let response = await axios.get("http://localhost:3000")
+        let response = await Client.get("/ticket")
         setTicket(response.data)
       } catch (err) {
         console.log("Error fetching tickets:", err)
@@ -56,18 +56,12 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/movie/:id" element={<MovieDetails />} />
           <Route path="/favorited" element={<Favorited />} />
+          <Route
+            path="/tickets"
+            element={<Ticket tickets={tickets} setTicket={setTicket} />}
+          />
         </Routes>
       </main>
-
-      {/* <Ticket tickets={tickets} setTicket={setTicket} />
-      <h1>Tickets:</h1>
-      {tickets?.map((ticket) => (
-        <div key={ticket._id}>
-          <h3>Type: {ticket.ticketType}</h3>
-          <p>Subject: {ticket.subject}</p>
-          <p>Message: {ticket.message}</p>
-        </div>
-      ))} */}
     </>
   )
 }
