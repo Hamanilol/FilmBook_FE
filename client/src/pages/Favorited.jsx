@@ -38,7 +38,12 @@ const Favorited = () => {
           })
         )
 
-        const validMovies = moviesWithDetails.filter((movie) => movie !== null)
+        const validMovies = []
+        moviesWithDetails.map((movie) => {
+          if (movie !== null) {
+            validMovies.push(movie)
+          }
+        })
         setFavorites(validMovies)
       } catch (err) {
         console.error("Error fetching favorites:", err)
